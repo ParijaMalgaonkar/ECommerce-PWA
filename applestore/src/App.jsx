@@ -96,14 +96,6 @@ const App = () => {
               RemoveItemFromBasket={RemoveItemFromBasket}
             />
           </Route>
-          {/* <Route exact path="/checkout">
-            <Checkout
-              orderInfo={orderInfo}
-              orderError={orderError}
-              basketData={basketData}
-              handleCheckout={handleCheckout}
-            />
-          </Route> */}
         </Switch>
       </div>
     </Router>

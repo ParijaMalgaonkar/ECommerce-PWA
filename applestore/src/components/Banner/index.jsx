@@ -5,8 +5,8 @@ const Banner = () => {
   return (
     <div className="banner">
       <Container>
-        <Grid container spacing={4}>
-          <Grid item xs={12} sm={6}>
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} className="bannerdiv">
             <Typography className="title" variant="h1">
               Welcome to the Apple Store
             </Typography>

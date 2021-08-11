@@ -7,6 +7,13 @@
     background-color: #F5F5F5;
     /* background-image: linear-gradient(to bottom right, #121212, #3d4a5d); */
   }
+
+  .bannerdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
   
   .banner > div > div {
     align-items: center;
@@ -17,9 +24,9 @@
     align-items: center;
   }
   
-  .banner .brand img {
+  /* .banner .brand img {
     width: 100%;
-  }
+  } */
   
   .banner .title {
       color: #21262d;

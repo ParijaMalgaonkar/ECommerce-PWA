@@ -3,10 +3,10 @@ import { CssBaseline } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { commerce } from "./lib/commerce";
 import NavBar from "./components/NavBar";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Products from "./components/Products";
 import Basket from "./components/Basket";
-import Checkout from "./components/Checkout";
+// import Checkout from "./components/Checkout";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -49,23 +49,23 @@ const App = () => {
     setBasketData(newBasketData);
   };
 
-  const handleCheckout = async (checkoutId, orderData) => {
-    try {
-      // const incomingOrder = await commerce.checkout.capture(
-      //   checkoutId,
-      //   orderData
-      // );
+  // const handleCheckout = async (checkoutId, orderData) => {
+  //   try {
+  //     // const incomingOrder = await commerce.checkout.capture(
+  //     //   checkoutId,
+  //     //   orderData
+  //     // );
 
-      setOrderInfo(orderData);
+  //     setOrderInfo(orderData);
 
-      refreshBasket();
-    } catch (error) {
-      setOrderError(
-        (error.data && error.data.error && error.data.error.message) ||
-          "There is an error occurred"
-      );
-    }
-  };
+  //     refreshBasket();
+  //   } catch (error) {
+  //     setOrderError(
+  //       (error.data && error.data.error && error.data.error.message) ||
+  //         "There is an error occurred"
+  //     );
+  //   }
+  // };
 
   useEffect(() => {
     fetchProducts();
@@ -96,16 +96,15 @@ const App = () => {
               RemoveItemFromBasket={RemoveItemFromBasket}
             />
           </Route>
-          <Route exact path="/checkout">
+          {/* <Route exact path="/checkout">
             <Checkout
               orderInfo={orderInfo}
               orderError={orderError}
               basketData={basketData}
               handleCheckout={handleCheckout}
             />
-          </Route>
+          </Route> */}
         </Switch>
-        <Footer />
       </div>
     </Router>
   );

@@ -8,6 +8,7 @@ import {
   } from "@material-ui/core";
   import { ShoppingCart } from "@material-ui/icons";
   import { Link, useLocation } from "react-router-dom";
+  import AppleLogo from "../../Group 14.png";
   
   import "./style.css";
   
@@ -27,7 +28,7 @@ import {
                 color="inherit"
               >
                 <img
-                  src="/home/parija/ECommerce-PWA/Images/Logo.png"
+                  src={AppleLogo}
                   alt="AppleStore logo"
                   height="25px"
                   className="logo"

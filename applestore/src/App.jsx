@@ -49,24 +49,6 @@ const App = () => {
     setBasketData(newBasketData);
   };
 
-  // const handleCheckout = async (checkoutId, orderData) => {
-  //   try {
-  //     // const incomingOrder = await commerce.checkout.capture(
-  //     //   checkoutId,
-  //     //   orderData
-  //     // );
-
-  //     setOrderInfo(orderData);
-
-  //     refreshBasket();
-  //   } catch (error) {
-  //     setOrderError(
-  //       (error.data && error.data.error && error.data.error.message) ||
-  //         "There is an error occurred"
-  //     );
-  //   }
-  // };
-
   useEffect(() => {
     fetchProducts();
     fetchBasketData();

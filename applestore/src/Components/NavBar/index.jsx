@@ -27,8 +27,8 @@ import {
                 color="inherit"
               >
                 <img
-                  src="https://github.com/DwinaTech/public-images/blob/main/DwinaTech-brand.png?raw=true"
-                  alt="DwinaTech logo"
+                  src="/home/parija/ECommerce-PWA/Images/Logo.png"
+                  alt="AppleStore logo"
                   height="25px"
                   className="logo"
                 />

@@ -9,6 +9,7 @@ import Basket from "./components/Basket";
 // import Checkout from "./components/Checkout";
 
 const App = () => {
+  const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [basketData, setBasketData] = useState({});
   const [orderInfo, setOrderInfo] = useState({});
@@ -17,6 +18,24 @@ const App = () => {
   const fetchProducts = async () => {
     const response = await commerce.products.list();
     setProducts((response && response.data) || []);
+  };
+
+  const fetchProductsPerCategory = async () => {
+    const { data: products } = await commerce.products.list({ limit: 200 });
+    const { data: categories } = await commerce.categories.list();
+    const productsPerCategory = categories.reduce((acc, category) => {
+      return [
+        ...acc,
+        {
+          ...category,
+          productsData: products.filter((product) =>
+            product.categories.find((cat) => cat.id === category.id)
+          ),
+        },
+      ];
+    }, []);
+
+    setCategories(productsPerCategory);
   };
 
   const fetchBasketData = async () => {
@@ -49,8 +68,27 @@ const App = () => {
     setBasketData(newBasketData);
   };
 
+  // const handleCheckout = async (checkoutId, orderData) => {
+  //   try {
+  //     // const incomingOrder = await commerce.checkout.capture(
+  //     //   checkoutId,
+  //     //   orderData
+  //     // );
+
+  //     setOrderInfo(orderData);
+
+  //     refreshBasket();
+  //   } catch (error) {
+  //     setOrderError(
+  //       (error.data && error.data.error && error.data.error.message) ||
+  //         "There is an error occurred"
+  //     );
+  //   }
+  // };
+
   useEffect(() => {
     fetchProducts();
+    fetchProductsPerCategory();
     fetchBasketData();
   }, []);
 
@@ -68,7 +106,7 @@ const App = () => {
         />
         <Switch>
           <Route exact path="/">
-            <Products products={products} addProduct={addProduct} />
+            <Products categories={categories} products={products} addProduct={addProduct} />
           </Route>
           <Route exact path="/basket">
             <Basket
@@ -77,6 +115,20 @@ const App = () => {
               handleEmptyBasket={handleEmptyBasket}
               RemoveItemFromBasket={RemoveItemFromBasket}
             />
+          </Route>
+          <Route exact path="/checkout">
+            <Basket
+                basketData={basketData}
+                updateProduct={updateProduct}
+                handleEmptyBasket={handleEmptyBasket}
+                RemoveItemFromBasket={RemoveItemFromBasket}
+              />
+            {/* <Checkout
+              orderInfo={orderInfo}
+              orderError={orderError}
+              basketData={basketData}
+              handleCheckout={handleCheckout}
+            /> */}
           </Route>
         </Switch>
       </div>
